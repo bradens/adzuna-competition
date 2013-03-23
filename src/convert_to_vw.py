@@ -14,7 +14,7 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 
 	for i in index_tokenize:
 		col = header[i]
-		words = get_words_keywords(line[i])
+		words = get_words_bulk(line[i])
 		new_item = "|%s %s" % (col, words)
 		new_line.append(new_item)
 
@@ -31,6 +31,10 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 
 
 def get_words_keywords(text):
+	text = text.replace("'","")
+	text = re.sub(r'\W+', ' ', text)
+	text = text.lower()
+	text = text.split()
 	extractor = extract.TermExtractor()
 	extractor.filter = extract.permissiveFilter
 	keys = extractor(text)
