@@ -18,3 +18,13 @@ def unlog(input):
 		val = line
 		val = math.exp(float(val))
 		output.write(infile2.readline().rstrip() + str(val) + "\n")
+
+def squareroot(input):
+	infile1 = open(input)
+	infile2 = open("../results/id-tmp")
+	output = open("../results/final.csv", 'wb')
+	output.write("Id,SalaryNormalized\n")
+	for line in infile1:
+		val = line
+		val = math.sqrt(float(val))
+		output.write(infile2.readline().rstrip() + str(val) + "\n")

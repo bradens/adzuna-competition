@@ -3,6 +3,8 @@ import sys
 from collections import defaultdict
 import math
 import re
+from topia.termextract import tag
+from topia.termextract import extract
 
 
 def build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize):
@@ -20,7 +22,7 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 		col = header[i]
 		value = line[i]
 		value_i = value_index[i][value]
-		new_item = "|%s %s" % (col, value_index)
+		new_item = "|%s %s" % (col, value_i)
 		new_line.append(new_item)
 
 	new_line.insert(0, label)
@@ -29,15 +31,14 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 
 
 def get_words(text):
-	text = text.replace("'","")
-	text = re.sub(r'\W+', ' ', text)
-	text = text.lower()
-	text = text.split()
+	extractor = extract.TermExtractor()
+	extractor.filter = extract.permissiveFilter
+	keys = extractor(text)
 	words = []
-	for w in text:
-		if w in words:
+	for i in range(0, len(keys)):
+		if keys[i][0] in words:
 			continue
-		words.append(w)
+		words.append(keys[i][0])
 	words = " ".join(words)
 	return words
 
