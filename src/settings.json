@@ -1,6 +1,0 @@
-{
-  "train_data_path": 	"$DataPath/Train.csv",
-  "valid_data_path": 	"$DataPath/Valid.csv",
-  "model_path": 			"$DataPath/../data-model.pickle",
-  "prediction_path": 	"$DataPath/../predictions.csv"
-}
