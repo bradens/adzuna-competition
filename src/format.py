@@ -1,5 +1,7 @@
 import math
 import csv
+import os
+import sys
 
 def prep_final():
 	o = open("../results/id-tmp", 'wb')
@@ -9,8 +11,8 @@ def prep_final():
 		o.write(line[0] + ",\n")
 
 
-def unlog(input):
-	infile1 = open(input)
+def unlog():
+	infile1 = open("../results/p.txt")
 	infile2 = open("../results/id-tmp")
 	output = open("../results/final.csv", 'wb')
 	output.write("Id,SalaryNormalized\n")
@@ -19,12 +21,26 @@ def unlog(input):
 		val = math.exp(float(val))
 		output.write(infile2.readline().rstrip() + str(val) + "\n")
 
-def squareroot(input):
-	infile1 = open(input)
+def square():
+	infile1 = open("../results/p.txt")
 	infile2 = open("../results/id-tmp")
 	output = open("../results/final.csv", 'wb')
 	output.write("Id,SalaryNormalized\n")
 	for line in infile1:
 		val = line
-		val = math.sqrt(float(val))
+		val = math.pow(float(val), 2)
 		output.write(infile2.readline().rstrip() + str(val) + "\n")
+
+
+def main():
+	if os.path.isfile("../results/id-tmp") == False:
+		prep_final()
+
+	if(sys.argv[1] == "root"):
+		square()
+	if(sys.argv[1] == "log"):
+		unlog()
+
+
+if __name__=="__main__":
+	main()

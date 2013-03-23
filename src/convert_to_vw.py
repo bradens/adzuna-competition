@@ -9,12 +9,12 @@ from topia.termextract import extract
 
 def build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize):
 	label = line[target_index]
-	label = str(math.log(float(label)))
+	label = str(math.sqrt(float(label)))
 	new_line = []
 
 	for i in index_tokenize:
 		col = header[i]
-		words = get_words(line[i])
+		words = get_words_keywords(line[i])
 		new_item = "|%s %s" % (col, words)
 		new_line.append(new_item)
 
@@ -30,7 +30,7 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 	return new_line
 
 
-def get_words(text):
+def get_words_keywords(text):
 	extractor = extract.TermExtractor()
 	extractor.filter = extract.permissiveFilter
 	keys = extractor(text)
@@ -39,6 +39,19 @@ def get_words(text):
 		if keys[i][0] in words:
 			continue
 		words.append(keys[i][0])
+	words = " ".join(words)
+	return words
+
+def get_words_bulk(text):
+	text = text.replace("'","")
+	text = re.sub(r'\W+', ' ', text)
+	text = text.lower()
+	text = text.split()
+	words = []
+	for w in text:
+		if w in words:
+			continue
+		words.append(w)
 	words = " ".join(words)
 	return words
 
