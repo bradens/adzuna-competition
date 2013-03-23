@@ -7,4 +7,6 @@ results/*
 *.synctex.gz
 *.bbl
 *.blg
-
+*.latexmk
+*.fls
+*.fdb_latexmk
