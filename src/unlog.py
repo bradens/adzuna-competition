@@ -1,9 +1,20 @@
 import math
+import csv
 
-def unlog(input, output):
-	infile = open(input)
-	outfile = open(output, 'wb')
-	for line in infile:
+def prep_final():
+	o = open("../results/id-tmp", 'wb')
+	reader = csv.reader(open("../data/Valid.csv"))
+	header = reader.next()
+	for line in reader:
+		o.write(line[0] + ",\n")
+
+
+def unlog(input):
+	infile1 = open(input)
+	infile2 = open("../results/id-tmp")
+	output = open("../results/final.csv", 'wb')
+	output.write("Id,SalaryNormalized\n")
+	for line in infile1:
 		val = line
 		val = math.exp(float(val))
-		outfile.write(str(val) + "\n")
+		output.write(infile2.readline().rstrip() + str(val) + "\n")
