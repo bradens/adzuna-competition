@@ -20,7 +20,7 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 		col = header[i]
 		value = line[i]
 		value_i = value_index[i][value]
-		new_item = "|%s %s" % (col, value_index)
+		new_item = "|%s %s" % (col, value_i)
 		new_line.append(new_item)
 
 	new_line.insert(0, label)
