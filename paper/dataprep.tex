@@ -16,8 +16,9 @@ The input format for VW is as follows:
 
 where Namespace=String[:Value] and Features=(String[:Value] )*. Here we can see the imediate differences to the original CSV files that
 are provided for the Kaggle challenge. The Label is the floating point number that is being attemped to be predicted. The importance
-tage can be used to give weight to a specific training instance over the ther instances. This can be useful for weighted preditions
-or higher confidence in a particular instance. Namespace is a value identifier while features are the values associated with the identifier.
+tag can be used to give weight to a specific training instance over the ther instances. This can be useful for weighted preditions
+or higher confidence in a particular instance. However, due to the large number of training instances given for this Kaggle competition
+(244,000), the tag was not used. Namespace is a value identifier while features are the values associated with the identifier.
 In order to transform the CSV files to the given VW input format, python scripts were created and run to make the conversion. While
 these python scipts were used primarily for conversion purposes, they also allowed the tweaking and adjustments of data as it was converted.
 We will now explain the different steps taken to tweak data during the conversion.\\
@@ -40,7 +41,7 @@ in the results in Table 1 for how it was used in relation to other data tweaks a
 The final data tweak to be placed on the data during the conversion process was the limiting of attributes to be used during 
 the training instance model creation. Our python scripts allowed us to adjust which attributes were to be used for the model
 generation. Here we played with one major setting in which we turned off all free text fields. The results of turning off
-the free text fields can again be seen in Table 1 in relation with the normalization tweaks. A large number of combinations
+the free text fields can again be seen in Table 5.1 in relation with the normalization tweaks. A large number of combinations
 of free text and categorical attributes could be tested at any given time with or without keywords with this program. However,
 due to the limited time of this project only the few were actually tested.\\
 

@@ -23,7 +23,11 @@ to easily avoid this from happening. (We get roughtly 240,000 features in the la
 to use the squared loss function. Given a prediction p and a label y a loss function measures the discrepancy between the data model's
 predicted outcome and the desired outcome. We selected the squared loss function because it has easier input requirements (no real
 restrictions) than say logistic loss which requires labels of +1 or -1, as well as squared loss allows for a continuous prediction model
-as opposed to binary predictions..\\
+as opposed to binary predictions. The final mention for the gradient descent method is that input this this method should be normal
+or close to. The problem with unnormalized data comes when a step is made in the gradient descent. At first the (hypothetical) slope
+of the gradient is so hight lat large steps cause an over shooting of the best target value, or the well of the parabola. Smaller
+first steps followed by larger later steps can help the algorithm hone in on the well of the probably easier. Thus having a bell
+shape of the input data, or having it normalized, gives us a better process towards finding the well of the porabola.\\
 
 VW comes with its own unique input format as was described in the data preperation section of this paper. However what was not fully
 explained was the flexibility of the input and how the input's features are intrepreted in the data mining process. (Refer to Equation 1)
