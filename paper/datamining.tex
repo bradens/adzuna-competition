@@ -22,7 +22,8 @@ features get hashed to the same weight, but we do not feel the need to get into 
 to easily avoid this from happening. (We get roughtly 240,000 features in the largest scenarios.) For the loss function of VW, we decided
 to use the squared loss function. Given a prediction p and a label y a loss function measures the discrepancy between the data model's
 predicted outcome and the desired outcome. We selected the squared loss function because it has easier input requirements (no real
-restrictions) than say logistic loss which requires labels of +1 or -1.\\
+restrictions) than say logistic loss which requires labels of +1 or -1, as well as squared loss allows for a continuous prediction model
+as opposed to binary predictions..\\
 
 VW comes with its own unique input format as was described in the data preperation section of this paper. However what was not fully
 explained was the flexibility of the input and how the input's features are intrepreted in the data mining process. (Refer to Equation 1)
