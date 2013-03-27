@@ -10,3 +10,4 @@ results/*
 *.latexmk
 *.fls
 *.fdb_latexmk
+model
