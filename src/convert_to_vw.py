@@ -7,7 +7,7 @@ from topia.termextract import tag
 from topia.termextract import extract
 
 
-def build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize):
+def build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize, keys):
 	label = line[target_index]
 	label = str( math.log( float( label )))
 	
@@ -15,10 +15,14 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 	
 	for i in index_tokenize:
 		col = header[i]
-		words = get_words_bulk( line[i] )
-		new_item = "|%s %s" % ( col, words )
-		new_line.append( new_item )
-		
+		words = ""
+		if col == 'FullDescription':
+			words = get_keywords_global(line[i], keys)
+		else:
+			words = get_words_bulk(line[i])
+		new_item = "|%s %s" % (col, words)
+		new_line.append(new_item)
+
 	for i in index_binarize:
 		col = header[i]
 		value = line[i]
@@ -31,6 +35,9 @@ def build_vw_line(line, value_index, header, target_index, index_tokenize, index
 	return new_line
 
 def get_words_keywords(text):
+	text = text.replace("'","")
+	text = re.sub(r'\W+', ' ', text)
+	text = text.lower()
 	extractor = extract.TermExtractor()
 	extractor.filter = extract.permissiveFilter
 	keys = extractor(text)
@@ -39,6 +46,18 @@ def get_words_keywords(text):
 		if keys[i][0] in words:
 			continue
 		words.append(keys[i][0])
+	words = " ".join(words)
+	return words
+
+def get_keywords_global(text, keywords):
+	text = text.replace("'","")
+	text = re.sub(r'\W+', ' ', text)
+	text = text.lower()
+	text = text.split()
+	words = []
+	for w in text:
+		if w in keywords:
+			words.append(w)
 	words = " ".join(words)
 	return words
 
@@ -54,6 +73,14 @@ def get_words_bulk(text):
 		words.append(w)
 	words = " ".join(words)
 	return words
+
+def load_keywords(file):
+	input = open(file)
+	words = []
+	for line in input:
+		words.append(line.rstrip('\n'))
+	return words
+
 
 
 def convert_to_vw(input, output):
@@ -77,6 +104,8 @@ def convert_to_vw(input, output):
 	index_binarize = map(lambda x: header.index(x), binarize)
 	index_drop = map(lambda x: header.index(x), drop)
 
+	keys = load_keywords("../data/keywords-500-desc.txt")
+
 	unique_vals = defaultdict(set)
 	for line in reader:
 		for i in index_binarize:
@@ -91,7 +120,7 @@ def convert_to_vw(input, output):
 	i_f.seek(0)
 	reader.next()
 	for line in reader:
-		new_line = build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize)
+		new_line = build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize, keys)
 		o_f.write(new_line + "\n")
 
 

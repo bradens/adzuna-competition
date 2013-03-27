@@ -2,33 +2,38 @@
 \label{sec:gathering}
 
 The Adzuna competition is all about trying to predict the salaries of jobs posted online from a few choice data
-points. These predictions will help to bring transparancy to the market while helping potential employees discover
+points. These predictions will help to bring transparency to the market while helping potential employees discover
 the best jobs suited for themselves. This being said, the Adzuna team has provided all challengers of the Kaggle
 competition with data sets in CSV formats.\\
 
 There are two main data sets used for this competition. The first set contains the training instances. The
 training instance contains 11 fields of which 10 are attributes with the 11th being the class. The 10
 attributes are as follows. An ID provides a unique identifier for each job. This ID will not be used in the
-actuall data mining process but will be used to associate jobs to salaries in the final results of this project.
-A title is a free text field that gives the position that an employeer is looking to fill. A full description
+actual data mining process but will be used to associate jobs to salaries in the final results of this project.
+A title is a free text field that gives the position that an employer is looking to fill. A full description
 is a free text field provided by the job advertisers. This description field holds many of the most interesting
-potential for future data mining analysis. This field has been give to the competetors stripped of any 
+potential for future data mining analysis. This field has been give to the competitors stripped of any 
 text that may directly refer to salary. The location raw field is a free text field for the location of
 the job while the location normalized field is a formal location provided by Adzuna with standard formatting.
 Contract type provides a categorical look at full time or part time. Contact time provides a categorical
 view of permanent or contract positions. The company field is a free text field for company names. The 
-job category field is a selection field from 30 standard job categories which employeers pick to their needs.
-Finally, the source name field provides the email address of the employer.\\
+job category field is a selection field from 30 standard job categories which employers pick to their needs.
+Finally, the source name field provides the email address of the employer. The final column of data is the class
+which is salary. This class is a continuous class and not a categorical or binary class.\\
 
 The second set of data provided by the Kaggle competition is the validation set of data. This data
-again comes in the CSV format and again has 11field of which 10 are attributes and 1 as a class. The
+again comes in the CSV format and again has 11 fields of which 10 are attributes and 1 as a class. The
 difference here is that salary has been stripped from the class field. This file is used as a standard
-testing file for all competetor's data models. This is the file of which all tests will be put against.\\
+testing file for all competitor's data models. This is the file of which all tests will be put against.\\
+
+The size of both of these items of data is quite large. The training CSV file is over 244,000 records
+long and the validation data is just over 40,000 records long. The size of these files will need to
+be taken into consideration when learning algorithms are applied.\\
 
 There is also an optional file provided by the Kaggle team called the location tree. This file is 
-again a CSV file, however is used for a different purpose. This file is used for the purpose of
-describing the hierarchial nature of the normalized location field in the training set data. Here
-the country, direction, city, and riegon are all given in order to give sense to the previously
+again a CSV file, however, it is used for a different purpose. This file is used for the purpose of
+describing the hierarchical nature of the normalized location field in the training set data. Here
+the country, direction, city, and region are all given in order to give sense to the previously
 mentioned normalized location data.\\
 
 For this project, we have simply made use of both the training and validation sets of data. These pieces
