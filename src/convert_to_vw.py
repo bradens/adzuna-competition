@@ -9,26 +9,26 @@ from topia.termextract import extract
 
 def build_vw_line(line, value_index, header, target_index, index_tokenize, index_binarize):
 	label = line[target_index]
-	label = str(math.sqrt(float(label)))
+	label = str( math.log( float( label )))
+	
 	new_line = []
-
+	
 	for i in index_tokenize:
 		col = header[i]
-		words = get_words_keywords(line[i])
-		new_item = "|%s %s" % (col, words)
-		new_line.append(new_item)
-
+		words = get_words_bulk( line[i] )
+		new_item = "|%s %s" % ( col, words )
+		new_line.append( new_item )
+		
 	for i in index_binarize:
 		col = header[i]
 		value = line[i]
 		value_i = value_index[i][value]
-		new_item = "|%s %s" % (col, value_i)
-		new_line.append(new_item)
-
-	new_line.insert(0, label)
-	new_line = " ".join(new_line)
+		new_item = "|%s %s" % ( col, value_i )	
+		new_line.append( new_item )
+	
+	new_line.insert( 0, label )
+	new_line = " ".join( new_line )
 	return new_line
-
 
 def get_words_keywords(text):
 	extractor = extract.TermExtractor()
@@ -57,13 +57,18 @@ def get_words_bulk(text):
 
 
 def convert_to_vw(input, output):
-	target	 	= 'SalaryNormalized'
-	tokenize 	= [ 'Title', 'FullDescription', 'LocationRaw' ]
-	binarize 	= [ 'LocationNormalized', 'ContractType', 'ContractTime', 'Company', 'Category', 'SourceName' ]
-	drop 			= [ 'SalaryRaw' ]
+	target = 'SalaryNormalized'
+	tokenize = [ 'Title', 'FullDescription' ]
+	binarize = [ 'Loc1', 'Loc2', 'Loc3', 'Loc4', 'Loc5', 'ContractType', 'ContractTime', 'Company', 'Category', 'SourceName' ]
+	drop = [  'SalaryRaw' ]
+
 
 	i_f = open(input)
 	o_f = open(output, 'wb')
+
+
+	print "%s ---> %s" % ( i_f, o_f )
+	
 	reader = csv.reader(i_f)
 	header = reader.next()
 
