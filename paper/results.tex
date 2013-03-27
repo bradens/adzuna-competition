@@ -15,7 +15,7 @@ Free Text & Logarithmic & Square Root\\
 None & 12712.17 & 13293.12\\
 All & 7350.44 & 7175.04\\
 Keywords (local) & 8149.91 & 7744.84\\
-Keywords (global) & & \\
+Keywords (global) & 8360.31544 & 8135.83 \\
 \hline
 \end{tabular}
 \end{center}
@@ -48,6 +48,14 @@ such as "the", "it", "and" and so on. The issue may lie in the fact that using k
 that are more telling than keywords. Perhaps this would be worth exploring in the future.\\
 
 As part of the last ditch effort of keywords, the global keyword trials can be seen in the keywords (global) row.
-Write something when this is done.
+These results were actually slightly worse than local keywords. A reminder, the difference between global and local
+was that global keywords were examined over the entire training instances and then limited to the top 500 keywords
+based on occurrence. Again the limiting of words would seem like a better idea than using all words in the free
+text fields, however, these limitations use less vector weights which could ultimately be the reason for the 
+worse final results.\\
 
-In conclusion, write something here once all data is done.
+In conclusion, we experimented with various trial runs of gradient descent in VW with different data parsing
+on free text fields. We eventually discovered that the linear gradient descent algorithm works better with
+a larger collection of words for a higher number of weight vectors We have presented various way in which
+keywords can be extracted from CSV files and used for data mining practices. We have also drawn the conclusion
+that bag of words algorithms prefer larger bag of words compared to smaller more refined set of words.
