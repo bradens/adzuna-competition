@@ -45,6 +45,17 @@ def get_words_keywords(text):
 	words = " ".join(words)
 	return words
 
+def get_keywords_global(text, keywords):
+	text = text.replace("'","")
+	text = re.sub(r'\W+', ' ', text)
+	text = text.lower()
+	words = []
+	for w in text:
+		if w in keywords:
+			words.append(w)
+	words = " ".join(words)
+	return words
+
 def get_words_bulk(text):
 	text = text.replace("'","")
 	text = re.sub(r'\W+', ' ', text)
@@ -57,6 +68,14 @@ def get_words_bulk(text):
 		words.append(w)
 	words = " ".join(words)
 	return words
+
+def load_keywords(file):
+	input = open(file)
+	words = []
+	for line in input:
+		words.append(line.rstrip('\n'))
+	return words
+
 
 
 def convert_to_vw(input, output):

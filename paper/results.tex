@@ -1,7 +1,7 @@
 \section{Results and Conclusions}
 
 This section contains the main results table for the 6 main data trial runs as described in the data mining section
-of this paper. All results are expressed in mean average error (MAE). The MAE is calculated when uploading potential
+of this paper. All results are expressed in mean absolute error (MAE). The MAE is calculated when uploading potential
 results to the Kaggle website competition. The MAE is exactly what is sounds like, in that it is the average
 "dollars off" between our estimate created using our data mining model and the actual answer known only by Kaggle.\\
 
@@ -14,7 +14,8 @@ Free Text & Logarithmic & Square Root\\
 \hline
 None & 12712.17 & 13293.12\\
 All & 7350.44 & 7175.04\\
-Keywords & & \\
+Keywords (local) & 8149.91 & 7744.84\\
+Keywords (global) & & \\
 \hline
 \end{tabular}
 \end{center}
@@ -23,24 +24,30 @@ Keywords & & \\
 
 As can be seen in the table above, the baseline scenario of no bag of words used in the data mining process yielded
 by far the worst results. This was largely expected based on the nature of the Kaggle competition. If data mining
-was better without bag of word usage, these types of challenges may not be ever needed as the simplisity of data
+was better without bag of word usage, these types of challenges may not be ever needed as the simplicity of data
 mining would be trivial. Where the power and knowledge of this competition really comes from is the use of the
 bag of words or free text columns in the training instances and how they can be used to better the results of any
 data mining predictions.\\
 
-The next man data trial run was that on the full bag of words or free text columns inside the VW data mining tool.
-These results are vastly supperior to those of the non free text trials. This was also largely to be expected. Some
+The next main data trial run was that on the full bag of words or free text columns inside the VW data mining tool.
+These results are vastly superior to those of the non free text trials. This was also largely to be expected. Some
 notes to take away from these results are as follows. For one, the use of all words in free text columns and the
-VW data mining toold using the gradient descent algorithm scored a lower MAE than the benchmark set by Kaggle
+VW data mining tools using the gradient descent algorithm scored a lower MAE than the benchmark set by Kaggle
 which was a random forest algorithm. The Kaggle benchmark with the random forest was 7536.29 which was beat
 by the full bag of words run we preformed. This already is showing promise for the use of the VW tool over a standard
 tool such as Weka which may just be able to load the data and preform analysis. The Kaggle random forest benchmark
 was also said to take 1.5 hours on a 2.7GHz processor the 8 cores and 8GB of RAM. The VW tool took around 5 minutes
 to fully complete its run cycle. The last thing to note from this full bag of words trial is that it put our
-team into 108th spot on the Kaggle leaderboards for this challenge out of 253 participating teams. This is a large
+team into 108th spot on the Kaggle leader-boards for this challenge out of 253 participating teams. This is a large
 success for this project.\\
 
-The final result for the main data trial sets was that of BLANK and BLANK from the keyword selection of the bag
-of words columns in the training instances. Write something here when data is done.\\
+The final result for the main data trial sets was that of the keywords (local) from the keyword selection of the bag
+of words columns in the training instances. We were surprised that the keywords did not help create a better solution
+than just a full bag of words. If anything the local keywords should have helped alleviate pressure from words
+such as "the", "it", "and" and so on. The issue may lie in the fact that using keywords will break up key sentences
+that are more telling than keywords. Perhaps this would be worth exploring in the future.\\
+
+As part of the last ditch effort of keywords, the global keyword trials can be seen in the keywords (global) row.
+Write something when this is done.
 
 In conclusion, write something here once all data is done.
